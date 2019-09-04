@@ -1,7 +1,7 @@
 ## Information
 
-wsManager can be used to quickly execute commands on a server when pentesting a PHP application. 
-the client interface is written in C#, which operate on web-based backdoors implemented by user himself. 
+wsManager can be used to quickly execute commands on a server while pentesting a PHP application. 
+The client interface is written in C#, which operate using a simple web-based backdoor implemented by user himself.
 
 Once uploaded, the web shell can be accessed by the client at any time. Once successfully connected, the user proceeds to manipulate files and data on the web server.
 
