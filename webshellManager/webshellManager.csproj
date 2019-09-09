@@ -82,6 +82,12 @@
     <Compile Include="informationsForm.Designer.cs">
       <DependentUpon>informationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="screenshotForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="screenshotForm.Designer.cs">
+      <DependentUpon>screenshotForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="shellForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="informationsForm.resx">
       <DependentUpon>informationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="screenshotForm.resx">
+      <DependentUpon>screenshotForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="shellForm.resx">
       <DependentUpon>shellForm.cs</DependentUpon>

