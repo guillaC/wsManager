@@ -15,6 +15,7 @@ Many commands and control features:
   * File manager (upload, download, archiver, etc)
   * Command execution
   * SQL Explorer
+  * Screen Viewer (windows only)
 
 ## Documentation
 
@@ -22,11 +23,12 @@ Coming soon
 
 ## Screenshots
 
-![](https://i.imgur.com/vDoTUUJ.png)
+![](https://i.imgur.com/1JfWKsR.png)
 ![](https://i.imgur.com/ZU4HJmd.png)
 ![](https://i.imgur.com/3I7Rjdf.png)
 ![](https://i.imgur.com/zbB5XTs.png)
 ![](https://i.imgur.com/VeRb4dN.png)
+![](https://i.imgur.com/2qn6pYq.png)
 
 ## Misc
 
