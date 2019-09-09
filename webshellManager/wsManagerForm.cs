@@ -121,17 +121,18 @@ namespace webshellManager
             if (lvWebShells.SelectedItems.Count == 0)
             {
                 cMenuStripLV.Items[0].Enabled = cMenuStripLV.Items[1].Enabled = cMenuStripLV.Items[2].Enabled =
-                    cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[5].Enabled =
+                    cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[5].Enabled = 
                     cMenuStripLV.Items[6].Enabled = false;
             }
             else
             {
                 cMenuStripLV.Items[0].Enabled = cMenuStripLV.Items[1].Enabled = cMenuStripLV.Items[2].Enabled =
-                    cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[5].Enabled = true;
+                cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[6].Enabled = true;
+                
                 if (lvWebShells.SelectedItems[0].SubItems[1].Text.ToUpper().Contains("WIN"))
                 {
-                    cMenuStripLV.Items[6].Enabled = true;
-                }
+                    cMenuStripLV.Items[4].Enabled = true;
+                } else cMenuStripLV.Items[4].Enabled = false;
             }
         }
 
