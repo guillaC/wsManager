@@ -26,13 +26,21 @@ namespace webshellManager
             }
             return true;
         }
-
+        
         private bool isValid(string pUrl, string pParam)
         {
             Random rnd = new Random();
+            string result = "";
             int rand = rnd.Next(100000, 999999);
             WebClient client = new WebClient();
-            string result = client.DownloadString(pUrl + "?" + pParam + "=echo \"" + rand.ToString() + "\";");
+            try
+            {
+                result = client.DownloadString(pUrl + "?" + pParam + "=echo \"" + rand.ToString() + "\";");
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             if (result.Contains(rand.ToString()))
             {
                 return true;
