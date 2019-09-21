@@ -33,6 +33,7 @@ namespace webshellManager
                 if (!lvWebShells.Items.ContainsKey(ws.getUrl()))
                 {
                     IDictionary<string, string> inf = ws.querybasicalInformation();
+                    if (inf == null) return;
                     ListViewItem lvi = new ListViewItem(new string[] { ws.getUrl(), inf["OS"], inf["Hostname"], inf["Release Name"], inf["Server Software"] });
                     lvi.Name = ws.getUrl();
                     lvWebShells.Items.Add(lvi);
