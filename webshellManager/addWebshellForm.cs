@@ -33,6 +33,7 @@ namespace webshellManager
             string result = "";
             int rand = rnd.Next(100000, 999999);
             WebClient client = new WebClient();
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
             try
             {
                 result = client.DownloadString(pUrl + "?" + pParam + "=echo \"" + rand.ToString() + "\";");
