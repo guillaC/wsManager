@@ -39,6 +39,7 @@ namespace webshellManager
             this.URL = address;
             this.variable = pVariable;
             this.client = new WebClient();
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
             client.Encoding = Encoding.UTF8;
         }
 
