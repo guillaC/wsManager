@@ -39,6 +39,8 @@ By using this software, you automatically agree to the above.*
 
 ## Changelog
 
+### 03/04/2019
+- HTTPS Support
 ### 09/09/2019
 - ScreenViewer Added
 
