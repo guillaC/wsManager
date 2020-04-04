@@ -14,6 +14,7 @@ Many commands and control features:
 
   * File manager (upload, download, archiver, etc)
   * Command execution
+  * PHP Exec
   * SQL Explorer
   * Screen Viewer (windows only)
 
@@ -27,6 +28,7 @@ Coming soon
 ![](https://i.imgur.com/ZU4HJmd.png)
 ![](https://i.imgur.com/3I7Rjdf.png)
 ![](https://i.imgur.com/zbB5XTs.png)
+![](https://i.imgur.com/dWVfZOU.png)
 ![](https://i.imgur.com/VeRb4dN.png)
 ![](https://i.imgur.com/2qn6pYq.png)
 
@@ -39,6 +41,8 @@ By using this software, you automatically agree to the above.*
 
 ## Changelog
 
+### 04/04/2019
+- PHP Code Execution
 ### 03/04/2019
 - HTTPS Support
 ### 09/09/2019
