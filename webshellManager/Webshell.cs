@@ -268,6 +268,7 @@ namespace webshellManager
         {
             this.client = wc;
             wc.Encoding = Encoding.UTF8;
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls | System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
         }
 
         public string getParam()
