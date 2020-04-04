@@ -81,6 +81,18 @@ namespace webshellManager
             }
         }
 
+        private void pHPExecToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (lvWebShells.SelectedItems.Count > 0)
+            {
+                foreach (ListViewItem lvI in lvWebShells.SelectedItems)
+                {
+                    phpForm phpForm = new phpForm(selectedWs(lvI));
+                    phpForm.Show();
+                }
+            }
+        }
+
         private void shellToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (lvWebShells.SelectedItems.Count > 0)
@@ -122,18 +134,18 @@ namespace webshellManager
             if (lvWebShells.SelectedItems.Count == 0)
             {
                 cMenuStripLV.Items[0].Enabled = cMenuStripLV.Items[1].Enabled = cMenuStripLV.Items[2].Enabled =
-                    cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[5].Enabled = 
-                    cMenuStripLV.Items[6].Enabled = false;
+                    cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[5].Enabled =
+                    cMenuStripLV.Items[6].Enabled = cMenuStripLV.Items[7].Enabled = false;
             }
             else
             {
                 cMenuStripLV.Items[0].Enabled = cMenuStripLV.Items[1].Enabled = cMenuStripLV.Items[2].Enabled =
-                cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[6].Enabled = true;
+                cMenuStripLV.Items[3].Enabled = cMenuStripLV.Items[4].Enabled = cMenuStripLV.Items[6].Enabled = cMenuStripLV.Items[7].Enabled = true;
                 
                 if (lvWebShells.SelectedItems[0].SubItems[1].Text.ToUpper().Contains("WIN"))
                 {
-                    cMenuStripLV.Items[4].Enabled = true;
-                } else cMenuStripLV.Items[4].Enabled = false;
+                    cMenuStripLV.Items[5].Enabled = true;
+                } else cMenuStripLV.Items[5].Enabled = false;
             }
         }
 

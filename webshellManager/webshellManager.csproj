@@ -82,6 +82,12 @@
     <Compile Include="informationsForm.Designer.cs">
       <DependentUpon>informationsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="phpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="phpForm.Designer.cs">
+      <DependentUpon>phpForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="screenshotForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="informationsForm.resx">
       <DependentUpon>informationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="phpForm.resx">
+      <DependentUpon>phpForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="screenshotForm.resx">
       <DependentUpon>screenshotForm.cs</DependentUpon>

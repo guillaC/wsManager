@@ -43,6 +43,7 @@
             this.fileManagerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sQLExplorerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
@@ -50,7 +51,7 @@
             this.tsButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tsButtonAbout = new System.Windows.Forms.ToolStripButton();
-            this.ScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pHPExecToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.cMenuStripLV.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -87,6 +88,7 @@
             this.lvWebShells.ContextMenuStrip = this.cMenuStripLV;
             this.lvWebShells.FullRowSelect = true;
             this.lvWebShells.GridLines = true;
+            this.lvWebShells.HideSelection = false;
             this.lvWebShells.Location = new System.Drawing.Point(0, 24);
             this.lvWebShells.Name = "lvWebShells";
             this.lvWebShells.Size = new System.Drawing.Size(831, 247);
@@ -125,51 +127,59 @@
             this.informationsToolStripMenuItem,
             this.fileManagerToolStripMenuItem,
             this.shellToolStripMenuItem,
+            this.pHPExecToolStripMenuItem,
             this.sQLExplorerToolStripMenuItem,
             this.ScreenshotToolStripMenuItem,
             this.toolStripSeparator1,
             this.deleteToolStripMenuItem});
             this.cMenuStripLV.Name = "cMenuStripLV";
-            this.cMenuStripLV.Size = new System.Drawing.Size(153, 164);
+            this.cMenuStripLV.Size = new System.Drawing.Size(181, 186);
             this.cMenuStripLV.Opening += new System.ComponentModel.CancelEventHandler(this.cMenuStripLV_Opening);
             // 
             // informationsToolStripMenuItem
             // 
             this.informationsToolStripMenuItem.Name = "informationsToolStripMenuItem";
-            this.informationsToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.informationsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.informationsToolStripMenuItem.Text = "Information";
             this.informationsToolStripMenuItem.Click += new System.EventHandler(this.informationsToolStripMenuItem_Click);
             // 
             // fileManagerToolStripMenuItem
             // 
             this.fileManagerToolStripMenuItem.Name = "fileManagerToolStripMenuItem";
-            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.fileManagerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.fileManagerToolStripMenuItem.Text = "File Manager";
             this.fileManagerToolStripMenuItem.Click += new System.EventHandler(this.fileManagerToolStripMenuItem_Click);
             // 
             // shellToolStripMenuItem
             // 
             this.shellToolStripMenuItem.Name = "shellToolStripMenuItem";
-            this.shellToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.shellToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.shellToolStripMenuItem.Text = "Shell";
             this.shellToolStripMenuItem.Click += new System.EventHandler(this.shellToolStripMenuItem_Click);
             // 
             // sQLExplorerToolStripMenuItem
             // 
             this.sQLExplorerToolStripMenuItem.Name = "sQLExplorerToolStripMenuItem";
-            this.sQLExplorerToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.sQLExplorerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sQLExplorerToolStripMenuItem.Text = "SQL Explorer";
             this.sQLExplorerToolStripMenuItem.Click += new System.EventHandler(this.sQLExplorerToolStripMenuItem_Click);
+            // 
+            // ScreenshotToolStripMenuItem
+            // 
+            this.ScreenshotToolStripMenuItem.Name = "ScreenshotToolStripMenuItem";
+            this.ScreenshotToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ScreenshotToolStripMenuItem.Text = "Screenshot";
+            this.ScreenshotToolStripMenuItem.Click += new System.EventHandler(this.ScreenshotToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(139, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -221,12 +231,12 @@
             this.tsButtonAbout.Text = "About";
             this.tsButtonAbout.Click += new System.EventHandler(this.tsButtonAbout_Click);
             // 
-            // ScreenshotToolStripMenuItem
+            // pHPExecToolStripMenuItem
             // 
-            this.ScreenshotToolStripMenuItem.Name = "ScreenshotToolStripMenuItem";
-            this.ScreenshotToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ScreenshotToolStripMenuItem.Text = "Screenshot";
-            this.ScreenshotToolStripMenuItem.Click += new System.EventHandler(this.ScreenshotToolStripMenuItem_Click);
+            this.pHPExecToolStripMenuItem.Name = "pHPExecToolStripMenuItem";
+            this.pHPExecToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pHPExecToolStripMenuItem.Text = "PHP Exec";
+            this.pHPExecToolStripMenuItem.Click += new System.EventHandler(this.pHPExecToolStripMenuItem_Click);
             // 
             // wsManagerForm
             // 
@@ -272,6 +282,7 @@
         private System.Windows.Forms.ColumnHeader colServerSoft;
         private System.Windows.Forms.ToolStripButton tsButtonSave;
         private System.Windows.Forms.ToolStripMenuItem ScreenshotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pHPExecToolStripMenuItem;
     }
 }
 
