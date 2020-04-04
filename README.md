@@ -43,8 +43,6 @@ By using this software, you automatically agree to the above.*
 
 ### 04/04/2020
 - PHP Code Execution
-
-### 03/04/2020
 - HTTPS Support
 
 ### 09/09/2019
